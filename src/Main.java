@@ -15,6 +15,7 @@ public class Main {
         }
     }
 
+    // creates ActivityTracked instances based on csv file
     public static ActivityTracked parseLine(String line) {
         String activity;
         double duration;
@@ -22,16 +23,13 @@ public class Main {
         double distance;
         double avgHeartRate;
 
-        int comma1 = line.indexOf(",");
-        int comma2 = line.indexOf(",", comma1+1);
-        int comma3 = line.indexOf(",", comma2+1);
-        int comma4 = line.indexOf(",", comma3+1);
+        StringTokenizer st = new StringTokenizer(line, ",");
 
-        activity = line.substring(0, comma1);
-        duration = Double.parseDouble(line.substring(comma1+1, comma2).trim());
-        date = line.substring(comma2+1, comma3);
-        distance = Double.parseDouble(line.substring(comma3+1, comma4));
-        avgHeartRate = Double.parseDouble(line.substring(comma4+1).trim());
+        activity = st.nextToken();
+        duration = Double.parseDouble(st.nextToken().trim());
+        date = st.nextToken();
+        distance = Double.parseDouble(st.nextToken().trim());
+        avgHeartRate = Double.parseDouble(st.nextToken().trim());
 
         return new ActivityTracked(activity, duration, date, distance, avgHeartRate);
     }
