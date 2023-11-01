@@ -4,6 +4,7 @@ public class ActivityTracked {
     private String date;
     private double distance;
     private double avgHeartRate;
+    private double intensity;
 
     public ActivityTracked(String activity, double duration, String date, double distance, double avgHeartRate) {
         this.activity = activity;
@@ -55,6 +56,11 @@ public class ActivityTracked {
 
     public void setAvgHeartRate(double avgHeartRate) {
         this.avgHeartRate = avgHeartRate;
+    }
+
+
+    public double caloriesBurned() {
+        return intensity * duration;
     }
 
     @Override
