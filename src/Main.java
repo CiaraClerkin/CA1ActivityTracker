@@ -40,6 +40,25 @@ public class Main {
         ArrayList<ActivityTracked> ActivitiesTracked = new ArrayList<ActivityTracked>();
         readFile("ActivitiesTracked.csv", ActivitiesTracked);
 
+        //test if csv reading works
+        for (ActivityTracked at: ActivitiesTracked) {
+            System.out.println(at);
+        }
+
+        System.out.println();
+
+        //test ordering by activity type
+        Comparator<ActivityTracked> cAct = new ActivityComparator();
+        Collections.sort(ActivitiesTracked, cAct);
+        for (ActivityTracked at: ActivitiesTracked) {
+            System.out.println(at);
+        }
+
+        System.out.println();
+
+        //test ordering by date
+        Comparator<ActivityTracked> cDate = new DateComparator();
+        Collections.sort(ActivitiesTracked, cDate);
         for (ActivityTracked at: ActivitiesTracked) {
             System.out.println(at);
         }
