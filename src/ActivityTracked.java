@@ -4,7 +4,8 @@ public class ActivityTracked {
     private String date;
     private double distance;
     private double avgHeartRate;
-    private double intensity;
+    private Intensity intensity;
+    private double caloriesBurned;
 
     public ActivityTracked(String activity, double duration, String date, double distance, double avgHeartRate) {
         this.activity = activity;
@@ -12,6 +13,7 @@ public class ActivityTracked {
         this.date = date;
         this.distance = distance;
         this.avgHeartRate = avgHeartRate;
+        //this.caloriesBurned = getCaloriesBurned();
     }
 
     public ActivityTracked() {
@@ -59,8 +61,34 @@ public class ActivityTracked {
     }
 
 
-    public double caloriesBurned() {
-        return intensity * duration;
+    public double getCaloriesBurned() {
+        double[] swimming = new double[]{5, 6.3, 7.6, 8.9, 10.2};
+        double[] running = new double[]{4.1, 7.2, 10, 15.4, 20.8};
+        double[] cycling = new double[]{2, 5, 7, 13, 15};
+        double[] current = new double[5];
+
+
+        if (activity.equalsIgnoreCase("swimming")) {
+            current = swimming;
+        }
+        else if (activity.equalsIgnoreCase("running")) {
+            current = running;
+        }
+        else {
+            current = cycling;
+        }
+
+        double intenseValue = 0;
+
+        switch (intensity) {
+            case VERY_LIGHT -> intenseValue = current[0];
+            case LIGHT -> intenseValue = current[1];
+            case MODERATE -> intenseValue = current[2];
+            case VIGOROUS -> intenseValue = current[3];
+            case VERY_VIGOROUS -> intenseValue = current[4];
+        }
+
+        return intenseValue * duration;
     }
 
     @Override

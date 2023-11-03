@@ -62,5 +62,23 @@ public class Main {
         for (ActivityTracked at: ActivitiesTracked) {
             System.out.println(at);
         }
+
+        System.out.println();
+
+        //test ordering by activity duration
+        DurationComparator cDur = new DurationComparator();
+        Collections.sort(ActivitiesTracked, cDur);
+        for (ActivityTracked at: ActivitiesTracked) {
+            System.out.println(at);
+        }
+
+        System.out.println();
+
+        //test ordering by distance
+        DistanceComparator cDis = new DistanceComparator();
+        Collections.sort(ActivitiesTracked, cDis);
+        for (ActivityTracked at: ActivitiesTracked) {
+            System.out.println(at);
+        }
     }
 }
