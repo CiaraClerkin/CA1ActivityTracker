@@ -80,5 +80,27 @@ public class Main {
         for (ActivityTracked at: ActivitiesTracked) {
             System.out.println(at);
         }
+
+        System.out.println();
+
+        //test binary search name
+        Collections.sort(ActivitiesTracked, cAct);
+        for (ActivityTracked at: ActivitiesTracked) {
+            System.out.println(at);
+        }
+
+        ActivityTracked key = new ActivityTracked("Running", 0, "", 0, 0);
+        //key.setDate("2023/06/12");
+
+        int index = Collections.binarySearch(ActivitiesTracked, key, cAct);
+        //System.out.println(index);
+
+        if (index >= 0) {
+            System.out.println("Found " + ActivitiesTracked.get(index) + " at index " + index);
+        }
+        else {
+            System.out.println("Not found in list");
+        }
+
     }
 }
