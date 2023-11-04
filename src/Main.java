@@ -33,60 +33,38 @@ public class Main {
         return new ActivityTracked(activity, date, duration, distance, avgHeartRate);
     }
 
+    public static ArrayList<ActivityTracked> ActivitiesTracked = new ArrayList<ActivityTracked>();
+
     public static void main(String[] args) throws IOException {
-        //System.out.println("Hello World");
-
-        ArrayList<ActivityTracked> ActivitiesTracked = new ArrayList<ActivityTracked>();
         readFile("ActivitiesTracked.csv", ActivitiesTracked);
-
         //test if csv reading works
-        for (ActivityTracked at: ActivitiesTracked) {
-            System.out.println(at);
-        }
-
-        System.out.println();
+        PrintAT();
 
         //test ordering by activity type
         Comparator<ActivityTracked> cAct = new ActivityComparator();
         Collections.sort(ActivitiesTracked, cAct);
-        for (ActivityTracked at: ActivitiesTracked) {
-            System.out.println(at);
-        }
-
-        System.out.println();
+        PrintAT();
 
         //test ordering by date
         Comparator<ActivityTracked> cDate = new DateComparator();
         Collections.sort(ActivitiesTracked, cDate);
-        for (ActivityTracked at: ActivitiesTracked) {
-            System.out.println(at);
-        }
-
-        System.out.println();
+        PrintAT();
 
         //test ordering by activity duration
         DurationComparator cDur = new DurationComparator();
         Collections.sort(ActivitiesTracked, cDur);
-        for (ActivityTracked at: ActivitiesTracked) {
-            System.out.println(at);
-        }
-
-        System.out.println();
+        PrintAT();
 
         //test ordering by distance
         DistanceComparator cDis = new DistanceComparator();
         Collections.sort(ActivitiesTracked, cDis);
-        for (ActivityTracked at: ActivitiesTracked) {
-            System.out.println(at);
-        }
+        PrintAT();
 
         System.out.println();
 
         //test binary search name
         Collections.sort(ActivitiesTracked, cAct);
-        for (ActivityTracked at: ActivitiesTracked) {
-            System.out.println(at);
-        }
+        PrintAT();
 
         ActivityTracked key = new ActivityTracked("Running","", 0, 0, 0);
         //key.setDate("2023/06/12");
@@ -100,5 +78,19 @@ public class Main {
         else {
             System.out.println("Not found in list");
         }
+
+        System.out.println();
+
+        //test date reverse order
+        Collections.sort(ActivitiesTracked, cDate);
+        Collections.reverse(ActivitiesTracked);
+        PrintAT();
+    }
+
+    public static void PrintAT() {
+        for (ActivityTracked at: ActivitiesTracked) {
+            System.out.println(at);
+        }
+        System.out.println();
     }
 }
