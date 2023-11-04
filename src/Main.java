@@ -3,7 +3,6 @@ import java.io.IOException;
 import java.util.*;
 
 public class Main {
-
     public static void readFile(String fileName, ArrayList<ActivityTracked> activities) throws IOException {
         File f = new File(fileName);
         Scanner in = new Scanner(f);
@@ -18,20 +17,20 @@ public class Main {
     // creates ActivityTracked instances based on csv file
     public static ActivityTracked parseLine(String line) {
         String activity;
-        double duration;
         String date;
+        double duration;
         double distance;
         double avgHeartRate;
 
         StringTokenizer st = new StringTokenizer(line, ",");
 
         activity = st.nextToken();
-        duration = Double.parseDouble(st.nextToken().trim());
         date = st.nextToken();
+        duration = Double.parseDouble(st.nextToken().trim());
         distance = Double.parseDouble(st.nextToken().trim());
         avgHeartRate = Double.parseDouble(st.nextToken().trim());
 
-        return new ActivityTracked(activity, duration, date, distance, avgHeartRate);
+        return new ActivityTracked(activity, date, duration, distance, avgHeartRate);
     }
 
     public static void main(String[] args) throws IOException {
@@ -89,7 +88,7 @@ public class Main {
             System.out.println(at);
         }
 
-        ActivityTracked key = new ActivityTracked("Running", 0, "", 0, 0);
+        ActivityTracked key = new ActivityTracked("Running","", 0, 0, 0);
         //key.setDate("2023/06/12");
 
         int index = Collections.binarySearch(ActivitiesTracked, key, cAct);
@@ -101,6 +100,5 @@ public class Main {
         else {
             System.out.println("Not found in list");
         }
-
     }
 }

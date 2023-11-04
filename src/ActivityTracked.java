@@ -7,10 +7,10 @@ public class ActivityTracked {
     private Intensity intensity;
     private double caloriesBurned;
 
-    public ActivityTracked(String activity, double duration, String date, double distance, double avgHeartRate) {
+    public ActivityTracked(String activity, String date, double duration, double distance, double avgHeartRate) {
         this.activity = activity;
-        this.duration = duration;
         this.date = date;
+        this.duration = duration;
         this.distance = distance;
         this.avgHeartRate = avgHeartRate;
         //this.caloriesBurned = getCaloriesBurned();
