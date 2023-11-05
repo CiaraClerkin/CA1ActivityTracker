@@ -40,6 +40,37 @@ public class Main {
         //test if csv reading works
         PrintAT();
 
+
+        //Menu Layout (subject to change)
+        //view activities in order by:
+            //calories burned (descending, no option)
+            //date
+                //ascending
+                //descending
+            //activity duration
+                //ascending
+                //descending
+            //type of activity
+            //distance
+                //ascending
+                //descending
+        //view a subset of activity
+            //activity type
+                //Cycling
+                //Running
+                //Swimming
+            //above a minimum distance
+                //input minimum distance
+            //type of energy expended
+                //Very Light
+                //Light
+                //Moderate
+                //Vigorous
+                //Very vigorous
+            //above a minimum duration
+                //input minimum duration
+
+
         //test ordering by activity type
         Comparator<ActivityTracked> cAct = new ActivityComparator();
         Collections.sort(ActivitiesTracked, cAct);
