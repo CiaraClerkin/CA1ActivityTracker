@@ -68,15 +68,15 @@ public class Main {
                 int choice1 = scanner.nextInt();
 
                 if (choice1 == 1) {
-                    orderCaloriesBurned();
+                    orderBy(cCal, true);
                 } else if (choice1 == 2) {
                     System.out.println("1. Ascending");
                     System.out.println("2. Descending");
                     System.out.println("");
                     int choice2 = scanner.nextInt();
 
-                    if (choice2 == 1) { orderDate(); }
-                    else if (choice2 == 2) { orderDateReverse(); }
+                    if (choice2 == 1) { orderBy(cDate, true); }
+                    else if (choice2 == 2) { orderBy(cDate, false); }
 
                 } else if (choice1 == 3) {
                     System.out.println("1. Ascending");
@@ -84,19 +84,19 @@ public class Main {
                     System.out.println("");
                     int choice2 = scanner.nextInt();
 
-                    if (choice2 == 1) { orderDuration(); }
-                    else if (choice2 == 2) { orderDurationReverse(); }
+                    if (choice2 == 1) { orderBy(cDur, true); }
+                    else if (choice2 == 2) { orderBy(cDur, false); }
 
                 } else if (choice1 == 4) {
-                    orderActivityType();
+                    orderBy(cAct, true);
                 } else if (choice1 == 5) {
                     System.out.println("1. Ascending");
                     System.out.println("2. Descending");
                     System.out.println("");
                     int choice2 = scanner.nextInt();
 
-                    if (choice2 == 1) { orderByDistance(); }
-                    else if (choice2 == 2) { orderByDistanceReverse(); }
+                    if (choice2 == 1) { orderBy(cDis, true); }
+                    else if (choice2 == 2) { orderBy(cDis, false); }
                 }
             }
 
@@ -275,63 +275,17 @@ public class Main {
         System.out.println();
     }
 
-    public static void orderActivityType () {
-        //test ordering by activity type
-        Comparator<ActivityTracked> cAct = new ActivityComparator();
-        Collections.sort(ActivitiesTracked, cAct);
-        System.out.println("test ordering by activity type");
-        PrintAT();
-    }
+    public static Comparator<ActivityTracked> cAct = new ActivityComparator();
+    public static Comparator<ActivityTracked> cDate = new DateComparator();
+    public static DurationComparator cDur = new DurationComparator();
+    public static DistanceComparator cDis = new DistanceComparator();
+    public static Comparator<ActivityTracked> cCal = new CaloriesBurnedComparator();
 
-    public static void orderDate () {
-        //test ordering by date
-        Comparator<ActivityTracked> cDate = new DateComparator();
-        Collections.sort(ActivitiesTracked, cDate);
-        //Collections.reverse();
-        System.out.println("test ordering by date");
-        PrintAT();
-    }
-
-    public static void orderDateReverse () {
-        //test date reverse order
-        Comparator<ActivityTracked> cDate = new DateComparator();
-        Collections.sort(ActivitiesTracked, cDate);
-        Collections.reverse(ActivitiesTracked);
-        System.out.println("test date reverse order");
-        PrintAT();
-    }
-
-    public static void orderDuration () {
-        //test ordering by activity duration
-        DurationComparator cDur = new DurationComparator();
-        Collections.sort(ActivitiesTracked, cDur);
-        System.out.println("test ordering by activity duration");
-        PrintAT();
-    }
-
-    public static void orderDurationReverse () {
-        //test ordering by activity duration
-        DurationComparator cDur = new DurationComparator();
-        Collections.sort(ActivitiesTracked, cDur);
-        Collections.reverse(ActivitiesTracked);
-        System.out.println("test ordering by activity duration");
-        PrintAT();
-    }
-
-    public static void orderByDistance () {
-        //test ordering by distance
-        DistanceComparator cDis = new DistanceComparator();
-        Collections.sort(ActivitiesTracked, cDis);
-        System.out.println("test ordering by distance");
-        PrintAT();
-    }
-
-    public static void orderByDistanceReverse () {
-        //test ordering by distance
-        DistanceComparator cDis = new DistanceComparator();
-        Collections.sort(ActivitiesTracked, cDis);
-        Collections.reverse(ActivitiesTracked);
-        System.out.println("test ordering by distance");
+    public static void orderBy(Comparator<ActivityTracked> cAT, boolean ascending) {
+        Collections.sort(ActivitiesTracked, cAT);
+        if (!ascending) {
+            Collections.reverse(ActivitiesTracked);
+        }
         PrintAT();
     }
 
@@ -381,8 +335,7 @@ public class Main {
 
     public static void orderCaloriesBurned()
     {
-        Comparator<ActivityTracked> cCaloriesBurned = new CaloriesBurnedComparator();
-        Collections.sort(ActivitiesTracked, cCaloriesBurned);
+        Collections.sort(ActivitiesTracked, cCal);
         PrintAT();
     }
 
