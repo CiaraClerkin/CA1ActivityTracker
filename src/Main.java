@@ -171,7 +171,6 @@ public class Main {
             if(choice == 4)
             {
                 System.out.println("Enter the activites name:");
-                scanner.nextLine();
                 String activityName = scanner.nextLine();
                 binarySearchName(activityName);
             }
@@ -181,11 +180,7 @@ public class Main {
             }
             else
             {
-                //if (choice != scanner.nextInt()) {
-                    System.out.println("Please use a valid input");
-                //}
-                //scanner.skip();
-                //System.out.println("");
+                System.out.println("Please use a valid input");
             }
 
         }
