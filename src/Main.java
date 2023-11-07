@@ -79,6 +79,8 @@ public class Main {
         //test ordering by date
         Comparator<ActivityTracked> cDate = new DateComparator();
         Collections.sort(ActivitiesTracked, cDate);
+        //Collections.reverse();
+        System.out.println("This is the thing I'm testing");
         PrintAT();
 
         //test ordering by activity duration
@@ -119,6 +121,7 @@ public class Main {
     }
 
     public static void PrintAT() {
+        //System.out.println("");
         for (ActivityTracked at: ActivitiesTracked) {
             System.out.println(at);
         }
