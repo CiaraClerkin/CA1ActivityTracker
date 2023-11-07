@@ -13,8 +13,8 @@ public class ActivityTracked {
         this.duration = duration;
         this.distance = distance;
         this.avgHeartRate = avgHeartRate;
-        //setIntensity()
-        //setCaloriesBurned();
+        setIntensity();
+        setCaloriesBurned();
     }
 
     public ActivityTracked() {
@@ -63,6 +63,50 @@ public class ActivityTracked {
 
     public double getCaloriesBurned() {
         return caloriesBurned;
+    }
+
+    public Intensity getIntensity()
+    {
+        setIntensity();
+        return intensity;
+    }
+
+
+    private void setIntensity() {
+        double[] kilometres = null;
+
+        if (activity.equalsIgnoreCase("swimming")) {
+            kilometres = new double[]{0.5, 1.25, 2, 2.75, 3.5};
+        } else if (activity.equalsIgnoreCase("running")) {
+            kilometres = new double[]{4.0, 8.0, 12.0, 16.0, 24.0};
+        } else if (activity.equalsIgnoreCase("cycling")) {
+            kilometres = new double[]{8.0, 16.0, 25.0, 33.0, 40.0};
+        }
+
+        double speed = distance / (duration / 60);
+        if (kilometres != null)
+        {
+            if (speed < kilometres[0])
+            {
+                intensity = Intensity.VERY_LIGHT;
+            }
+            else if (speed >= kilometres[0] && speed < kilometres[1])
+            {
+                intensity = Intensity.LIGHT;
+            }
+            else if (speed >= kilometres[1] && speed < kilometres[2])
+            {
+                intensity = Intensity.MODERATE;
+            }
+            else if (speed >= kilometres[2] && speed < kilometres[3])
+            {
+                intensity = Intensity.VIGOROUS;
+            }
+            else if (speed >= kilometres[3])
+            {
+                intensity = Intensity.VERY_VIGOROUS;
+            }
+        }
     }
 
     public void setCaloriesBurned() {

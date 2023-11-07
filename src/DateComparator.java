@@ -19,8 +19,8 @@ public class DateComparator implements Comparator<ActivityTracked> {
 
 
         //slashes are unnecessary, delete them
-        String newDate1 = date1[2]+ "/" + date1[1] + "/" + date1[0];
-        String newDate2 = date2[2]+ "/" + date2[1] + "/" + date2[0];
+        String newDate1 = date1[2] + date1[1] + date1[0];
+        String newDate2 = date2[2] + date2[1] + date2[0];
 
         return newDate1.compareTo(newDate2);
 
