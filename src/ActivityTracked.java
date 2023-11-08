@@ -13,7 +13,7 @@ public class ActivityTracked {
         this.duration = duration;
         this.distance = distance;
         this.avgHeartRate = avgHeartRate;
-        setIntensity();
+        //setIntensity();
         setCaloriesBurned();
     }
 
@@ -84,6 +84,8 @@ public class ActivityTracked {
         }
 
         double speed = distance / (duration / 60);
+        if(Double.isNaN(speed))
+            speed = 0;
         if (kilometres != null)
         {
             if (speed < kilometres[0])
@@ -110,6 +112,8 @@ public class ActivityTracked {
     }
 
     public void setCaloriesBurned() {
+        setIntensity();
+
         double[] swimming = new double[]{5, 6.3, 7.6, 8.9, 10.2};
         double[] running = new double[]{4.1, 7.2, 10, 15.4, 20.8};
         double[] cycling = new double[]{2, 5, 7, 13, 15};

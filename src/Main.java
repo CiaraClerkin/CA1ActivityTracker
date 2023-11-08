@@ -115,9 +115,9 @@ public class Main {
                     System.out.println("");
                     int choice2 = scanner.nextInt();
 
-                    if (choice2 == 1) { activityType("Cycling"); }
-                    else if (choice2 == 2) { activityType("Running"); }
-                    else if (choice2 == 3) { activityType("Swimming"); }
+                    if (choice2 == 1) { PrintAT("Cycling"); }
+                    else if (choice2 == 2) { PrintAT("Running"); }
+                    else if (choice2 == 3) { PrintAT("Swimming"); }
 
                 } else if (choice1 == 2) {
                     System.out.println("Input Minimum Distance");
@@ -171,6 +171,7 @@ public class Main {
             if(choice == 4)
             {
                 System.out.println("Enter the activites name:");
+                scanner.nextLine();
                 String activityName = scanner.nextLine();
                 binarySearchName(activityName);
             }
@@ -178,10 +179,10 @@ public class Main {
             {
                 exit = true;
             }
-            else
+            /*else
             {
                 System.out.println("Please use a valid input");
-            }
+            }*/
 
         }
         //view activities in order by:
@@ -275,6 +276,60 @@ public class Main {
         System.out.println();
     }
 
+    public static void PrintAT(String activityType) {
+        System.out.printf("%s\t%5s\t\t\t%s\t%s\t%s\t\t%s\t\t\t%s\n", "Activity Type", "Date", "Duration", "Distance", "Average Heart Rate", "Intensity", "Calories Burned");
+        for (ActivityTracked at: ActivitiesTracked) {
+            if (at.getActivity().equalsIgnoreCase(activityType)) {
+                System.out.printf("%-13s\t%s\t\t%-4f\t%f\t%f\t\t\t\t%-13s\t\t%f\n", at.getActivity(), at.getDate(), at.getDuration(), at.getDistance(), at.getAvgHeartRate(), at.getIntensity(), at.getCaloriesBurned());
+            }
+        }
+        System.out.println();
+    }
+
+    public static void minimumDistance(double minDistance)
+    {
+        System.out.printf("%s\t%5s\t\t\t%s\t%s\t%s\t\t%s\t\t\t%s\n", "Activity Type", "Date", "Duration", "Distance", "Average Heart Rate", "Intensity", "Calories Burned");
+        for (ActivityTracked at: ActivitiesTracked) {
+            if (at.getDistance() >= minDistance) {
+                System.out.printf("%-13s\t%s\t\t%-4f\t%f\t%f\t\t\t\t%-13s\t\t%f\n", at.getActivity(), at.getDate(), at.getDuration(), at.getDistance(), at.getAvgHeartRate(), at.getIntensity(), at.getCaloriesBurned());
+            }
+        }
+        System.out.println();
+    }
+
+    /*public static void minimum(double min, double ref)
+    {
+        for (ActivityTracked activity : ActivitiesTracked)
+        {
+            if (ref >= min)
+            {
+                System.out.println(activity);
+            }
+        }
+    }*/
+
+    public static void minimumDuration(double minDuration)
+    {
+        System.out.printf("%s\t%5s\t\t\t%s\t%s\t%s\t\t%s\t\t\t%s\n", "Activity Type", "Date", "Duration", "Distance", "Average Heart Rate", "Intensity", "Calories Burned");
+        for (ActivityTracked at: ActivitiesTracked) {
+            if (at.getDuration() >= minDuration) {
+                System.out.printf("%-13s\t%s\t\t%-4f\t%f\t%f\t\t\t\t%-13s\t\t%f\n", at.getActivity(), at.getDate(), at.getDuration(), at.getDistance(), at.getAvgHeartRate(), at.getIntensity(), at.getCaloriesBurned());
+            }
+        }
+        System.out.println();
+    }
+
+    /*public static void activityType(String activityType)
+    {
+        for (ActivityTracked activity : ActivitiesTracked)
+        {
+            if (activity.getActivity().equalsIgnoreCase(activityType))
+            {
+                //System.out.println(activity);
+            }
+        }
+    }*/
+
     public static Comparator<ActivityTracked> cAct = new ActivityComparator();
     public static Comparator<ActivityTracked> cDate = new DateComparator();
     public static DurationComparator cDur = new DurationComparator();
@@ -289,38 +344,7 @@ public class Main {
         PrintAT();
     }
 
-    public static void activityType(String activityType)
-    {
-        for (ActivityTracked activity : ActivitiesTracked)
-        {
-            if (activity.getActivity().equalsIgnoreCase(activityType))
-            {
-                System.out.println(activity);
-            }
-        }
-    }
 
-    public static void minimumDistance(double minDistance)
-    {
-        for (ActivityTracked activity : ActivitiesTracked)
-        {
-            if (activity.getDistance() >= minDistance)
-            {
-                System.out.println(activity);
-            }
-        }
-    }
-
-    public static void minimumDuration(double minDuration)
-    {
-        for (ActivityTracked activity : ActivitiesTracked)
-        {
-            if (activity.getDuration() >= minDuration)
-            {
-                System.out.println(activity);
-            }
-        }
-    }
 
     public static void viewIntensity(Intensity intensity)
     {
@@ -389,7 +413,7 @@ public class Main {
 
 
     public static void binarySearchName (String activityName) {
-        Comparator<ActivityTracked> cAct = new ActivityComparator();
+        //Comparator<ActivityTracked> cAct = new ActivityComparator();
         Collections.sort(ActivitiesTracked, cAct);
         //PrintAT();
 
